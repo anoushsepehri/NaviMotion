@@ -4,20 +4,41 @@ import time
 
 prev_x=0
 prev_y=0
+error = 3
+
+prev_motion =  # can be LEFT,RIGHT,TOP,DOWN,
+
 
 def motiondetect(centroid1, centroid2):
     delta_x=centroid2[0]-centroid1[0]
     delta_y=centroid2[1]-centroid1[1]
 
-    if delta_x<-2:
+    if delta_x > error and abs(delta_x) > abs(delta_y):
         return "LEFT"
-    elif delta_x>2:
+    elif delta_x < -error and abs(delta_x) > abs(delta_y):
         return "RIGHT"
-    elif delta_y<-5:
+    elif delta_y > error and abs(delta_y) > abs(delta_x):
         return "DOWN"
+    elif delta_y < -error and abs(delta_y) > abs(delta_x):
+        return "UP"
     else:
         return " "
 
+def statedetect(state,motion):
+    if state == "NEUTRAL":
+        state = motion
+        return motion
+    elif state == "LEFT" and motion == "RIGHT" || state == "RIGHT" and motion == "LEFT" || state == "UP" and motion == "DOWN" state == "DOWN" and motion == "UP":
+        state = "NEUTRAL"
+        return "NEUTRAL"
+    elif state == "RIGHT" and motion == "LEFT":
+        state = "NEUTRAL"
+        return "NEUTRAL"
+    elif state == "LEFT" and motion == "RIGHT":
+        state =
+        return "NEUTRAL"
+    else:
+        return motion
 
 cood = []
 cascPath = sys.argv[1]
@@ -55,10 +76,12 @@ while True:
         averaged_centroid_current = (averaged_centroid_x,averaged_centroid_y)
 
         cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 255, 0), 2)
-        cv2.circle(frame,averaged_centroid_current,5,(255,0,0),2)
+        cv2.circle(frame,averaged_centroid_current,5,(0,255,0),2)
 
-    output=motiondetect(averaged_centroid_previous,averaged_centroid_current)
-    print (output)
+    motion=motiondetect(averaged_centroid_previous,averaged_centroid_current)
+    state=statedetect(state,motion)
+    print (state)
+
 
 # Display the resulting frame
     cv2.imshow('Video', frame)

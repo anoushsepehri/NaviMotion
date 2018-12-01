@@ -6,7 +6,7 @@ prev_x=0
 prev_y=0
 error = 3
 
-prev_motion =  # can be LEFT,RIGHT,TOP,DOWN,
+#prev_motion =  # can be LEFT,RIGHT,TOP,DOWN,
 
 
 def motiondetect(centroid1, centroid2):
@@ -23,22 +23,6 @@ def motiondetect(centroid1, centroid2):
         return "UP"
     else:
         return " "
-
-def statedetect(state,motion):
-    if state == "NEUTRAL":
-        state = motion
-        return motion
-    elif state == "LEFT" and motion == "RIGHT" || state == "RIGHT" and motion == "LEFT" || state == "UP" and motion == "DOWN" state == "DOWN" and motion == "UP":
-        state = "NEUTRAL"
-        return "NEUTRAL"
-    elif state == "RIGHT" and motion == "LEFT":
-        state = "NEUTRAL"
-        return "NEUTRAL"
-    elif state == "LEFT" and motion == "RIGHT":
-        state =
-        return "NEUTRAL"
-    else:
-        return motion
 
 cood = []
 cascPath = sys.argv[1]
@@ -79,8 +63,8 @@ while True:
         cv2.circle(frame,averaged_centroid_current,5,(0,255,0),2)
 
     motion=motiondetect(averaged_centroid_previous,averaged_centroid_current)
-    state=statedetect(state,motion)
-    print (state)
+    #state=statedetect(state,motion)
+    print (motion)
 
 
 # Display the resulting frame

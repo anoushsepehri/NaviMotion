@@ -55,10 +55,9 @@ while True:
     for (x, y, w, h) in faces:
         cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 255, 0), 2)
        
-        cood=deltapos((x+w)/2,(y+h)/2,prev_x,prev_y)
-        #print(cood)
-        prev_x=(x+w)/2
-        prev_y=(y+h)/2
+        cood=deltapos(x+(w/2),(y+(+h/2)),prev_x,prev_y)
+        prev_x=(x+(w/2))
+        prev_y=(y+(h/2))
         output=motiondetec(cood)
         print (output)
 

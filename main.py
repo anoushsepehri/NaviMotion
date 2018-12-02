@@ -80,7 +80,7 @@ listD = (dev1, dev2, dev3)
 initialD = listD[0]
 
 #initial center text
-center_text = tk.Label(text=initialD, master=window, height=20, width=20)
+center_text = tk.Label(text=initialD, master=window, height=10, width=30, font=("Arial", 18))
 center_text.grid(column=1, row=2)
 #center_text.insert(tk.END, initialD)
 
@@ -149,10 +149,10 @@ button_up.grid(row=1,column=0, columnspan=3, sticky="we")
 button_down = tk.Button(text="Go Down", height=10, width=20)
 button_down.grid(row=3, column=0, columnspan=3, sticky="we")
 
-button_enter = tk.Button(text="Enter", height=20, width=10)
+button_enter = tk.Button(text="Enter", height=20, width=20)
 button_enter.grid(row=2, column=2)
 
-button_back = tk.Button(text="Back", height=20, width=10)
+button_back = tk.Button(text="Back", height=20, width=20)
 button_back.grid(row=2, column=0)
 
 #Label

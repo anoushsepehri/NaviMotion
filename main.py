@@ -60,8 +60,8 @@ def motionfilter(prev_motion,current_motion):
         else:
             return " "
 
-cascPath = sys.argv[1]
-faceCascade = cv2.CascadeClassifier(cascPath)
+#cascPath = sys.argv[1]
+faceCascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml') #Feeding stock data to train facial recognition
 video_capture = cv2.VideoCapture(0)
 
 averaged_centroid_list = list()
@@ -139,7 +139,7 @@ window.geometry("800x800")
 window.config(background="black")
 
 # title
-title = tk.Label(text="This is our app")
+title = tk.Label(text="Light Control")
 title.grid(row=0, column=1)
 
 #Button
@@ -211,8 +211,6 @@ while True:
 
 # When everything is done, release the capture
 #video_capture.release()
-
-
 
 
 cv2.destroyAllWindows()

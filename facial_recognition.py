@@ -30,20 +30,23 @@ def motiondetect(centroid1, centroid2):
 
 def motionfilter(prev_motion,current_motion):
     if current_motion == prev_motion:
-        return
+        return ""
     else:
         if current_motion != "":
             global prev_motion_quantified
             global prev_motion_quantified_time
             global current_motion_time
-            if (current_motion == "RIGHT" and prev_motion_quantified == "LEFT" and (current_motion_time-prev_motion_quantified_time)<elapsed_time) or (current_motion == "LEFT" and prev_motion_quantified == "RIGHT" and (current_motion_time-prev_motion_quantified_time)<elapsed_time) or (current_motion == "UP" and prev_motion_quantified == "DOWN" and (current_motion_time-prev_motion_quantified_time)<elapsed_time) or (current_motion == "DOWN" and prev_motion_quantified == "UP" and (current_motion_time-prev_motion_quantified_time)<elapsed_time):
-                return
+            if (current_motion == "RIGHT" and prev_motion_quantified == "LEFT" and (current_motion_time-prev_motion_quantified_time)<elapsed_time) \
+                or (current_motion == "LEFT" and prev_motion_quantified == "RIGHT" and (current_motion_time-prev_motion_quantified_time)<elapsed_time) \
+                or (current_motion == "UP" and prev_motion_quantified == "DOWN" and (current_motion_time-prev_motion_quantified_time)<elapsed_time) \
+                or (current_motion == "DOWN" and prev_motion_quantified == "UP" and (current_motion_time-prev_motion_quantified_time)<elapsed_time):
+                return ""
             else:
                 prev_motion_quantified = current_motion
                 prev_motion_quantified_time = current_motion_time
-                print current_motion
-                return
-
+                return current_motion
+        else:
+            return ""
 
 cascPath = sys.argv[1]
 faceCascade = cv2.CascadeClassifier(cascPath)
@@ -84,7 +87,8 @@ while True:
 
     prev_motion = current_motion
     current_motion, current_motion_time = motiondetect(averaged_centroid_previous,averaged_centroid_current)
-    motionfilter(prev_motion,current_motion)
+    output = motionfilter(prev_motion,current_motion)
+    print(output)
 
 # Display the resulting frame
     cv2.imshow('Video', frame)

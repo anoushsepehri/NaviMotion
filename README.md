@@ -7,7 +7,7 @@ Download Main.py and .xml file to run the program. Must have OpenCV, Tkinter, an
 
 Developed By:
 
-Anoush Sepehri
-Oon Chu Lip
-YiChaun Roy Wang
+Anoush Sepehri, 
+Oon Chu Lip, 
+YiChaun Roy Wang, 
 Juan Pablo Garcia
